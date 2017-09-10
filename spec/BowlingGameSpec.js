@@ -8,52 +8,51 @@ describe('BowlingGame', function(){
 
   describe('When initialized', function(){
 
-    it('should start with an empty score card', function(){
-        expect(bowlingGame.allFrameScores).toEqual(new Array);
+    it('should start with an emtpy rolls array', function(){
+      expect(bowlingGame.rolls).toEqual(new Array);
     });
+  });
+
+  // Criteria:
+  // Gutter game
+
+  describe('when bowling', function(){
+
+    it('can roll a gutter game', function(){
+      rollMany(0, 20)
+      expect(bowlingGame.score()).toEqual(0)
+
+    });
+
+    it('can roll a spare', function(){
+      bowlingGame.roll(5);
+      bowlingGame.roll(5);
+      bowlingGame.roll(3);
+      rollMany(0, 17)
+      expect(bowlingGame.score()).toEqual(16)
+    });
+
+    it('can roll a strike', function(){
+      bowlingGame.roll(10);
+      bowlingGame.roll(4);
+      bowlingGame.roll(3);
+      rollMany(0, 16)
+      expect(bowlingGame.score()).toEqual(24)
+    });
+
+    var rollMany = function (pins, rolls) {
+      for (var i = 0; i < rolls; i++ ) (
+        bowlingGame.roll(pins)
+      )
+    };
+
 
   });
 
-
-  describe('#cummulativeScores', function(){
-
-    it('scores sould be cummulative', function(){
-        bowlingGame.frameOne([5,4])
-        bowlingGame.frameTwo([3,2])
-        bowlingGame.frameThree([6])
-        expect(bowlingGame.cummulativeScores()[2]).toEqual(20)
-    });
-
-  });
-
-  describe('#frameOne', function(){
-
-    it('should add the score to the score card', function(){
-      bowlingGame.frameOne([5,4])
-      expect(bowlingGame.allFrameScores[0]).toEqual(9)
-    });
-
-  });
-
-  describe('#frameTwo', function(){
-
-    it('should add the score to the score card', function(){
-      bowlingGame.frameOne([5,4])
-      bowlingGame.frameTwo([3,2])
-      expect(bowlingGame.allFrameScores[1]).toEqual(5)
-    });
-
-  });
-
-  describe('#frameThress', function(){
-
-    it('should add the score to the score card', function(){
-      bowlingGame.frameOne([5,4])
-      bowlingGame.frameTwo([3,2])
-      bowlingGame.frameThree([6])
-      expect(bowlingGame.allFrameScores[2]).toEqual(6)
-    });
-
-  });
+  // One frame
+  // Multiple frames
+  // Spares
+  // Strikes
+  // Final Frame
 
 });
