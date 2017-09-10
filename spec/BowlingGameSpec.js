@@ -40,6 +40,12 @@ describe('BowlingGame', function(){
       expect(bowlingGame.score()).toEqual(24)
     });
 
+    it('can roll a prefert game', function(){
+      rollMany(10,20);
+      expect(bowlingGame.score()).toEqual(300)
+
+    })
+
     var rollMany = function (pins, rolls) {
       for (var i = 0; i < rolls; i++ ) (
         bowlingGame.roll(pins)
