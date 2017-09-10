@@ -41,7 +41,7 @@ describe('BowlingGame', function(){
     });
 
     it('can roll a prefert game', function(){
-      rollMany(10,20);
+      rollMany(10,12);
       expect(bowlingGame.score()).toEqual(300)
 
     })
